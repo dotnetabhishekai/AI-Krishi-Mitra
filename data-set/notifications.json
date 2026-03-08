@@ -1,0 +1,103 @@
+{
+  "notifications": [
+    {
+      "notification_id": "N001",
+      "farmer_id": "F001",
+      "type": "Weather Alert",
+      "priority": "Medium",
+      "title": "Clear Weather - Good for Spraying",
+      "message": "Next 2 days clear weather. Good time for pesticide/fungicide application.",
+      "language": "hi-IN",
+      "sent_date": "2026-02-28T06:00:00Z",
+      "delivery_channel": "whatsapp",
+      "status": "Delivered",
+      "read": true,
+      "action_required": false
+    },
+    {
+      "notification_id": "N002",
+      "farmer_id": "F002",
+      "type": "Pest Alert",
+      "priority": "High",
+      "title": "Bollworm Alert - High Risk",
+      "message": "Weather conditions favorable for bollworm. Check your cotton crop and take preventive measures.",
+      "language": "te-IN",
+      "sent_date": "2026-02-27T07:30:00Z",
+      "delivery_channel": "whatsapp",
+      "status": "Delivered",
+      "read": true,
+      "action_required": true,
+      "action_taken": true,
+      "action_date": "2026-02-27T15:20:00Z"
+    }
+  ]
+}
+    ,
+    {
+      "notification_id": "N003",
+      "farmer_id": "F003",
+      "type": "Irrigation Reminder",
+      "priority": "Medium",
+      "title": "Irrigation Due Today",
+      "message": "Your sugarcane crop needs irrigation today. Light rain expected but not sufficient.",
+      "language": "mr-IN",
+      "sent_date": "2026-02-28T05:00:00Z",
+      "delivery_channel": "whatsapp",
+      "status": "Delivered",
+      "read": false,
+      "action_required": true
+    },
+    {
+      "notification_id": "N004",
+      "farmer_id": "F004",
+      "type": "Market Price",
+      "priority": "Low",
+      "title": "Rice Price Update",
+      "message": "Sona Masuri rice price stable at ₹3850/quintal in Coimbatore market.",
+      "language": "ta-IN",
+      "sent_date": "2026-02-28T08:00:00Z",
+      "delivery_channel": "whatsapp",
+      "status": "Delivered",
+      "read": false,
+      "action_required": false
+    },
+    {
+      "notification_id": "N005",
+      "farmer_id": "F001",
+      "type": "Follow-up Reminder",
+      "priority": "Low",
+      "title": "Check Wheat Crop",
+      "message": "7 days since rust treatment. Please check your wheat crop and report status.",
+      "language": "hi-IN",
+      "scheduled_date": "2026-03-07T09:00:00Z",
+      "delivery_channel": "whatsapp",
+      "status": "Scheduled",
+      "read": false,
+      "action_required": true
+    }
+  ],
+  "notification_preferences": [
+    {
+      "farmer_id": "F001",
+      "weather_alerts": true,
+      "pest_alerts": true,
+      "market_prices": true,
+      "irrigation_reminders": true,
+      "government_schemes": false,
+      "preferred_time": "morning",
+      "quiet_hours_start": "22:00",
+      "quiet_hours_end": "06:00"
+    },
+    {
+      "farmer_id": "F002",
+      "weather_alerts": true,
+      "pest_alerts": true,
+      "market_prices": false,
+      "irrigation_reminders": true,
+      "government_schemes": true,
+      "preferred_time": "evening",
+      "quiet_hours_start": "21:00",
+      "quiet_hours_end": "07:00"
+    }
+  ]
+}

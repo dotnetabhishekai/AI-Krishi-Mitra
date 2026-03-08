@@ -1,0 +1,87 @@
+{
+  "farmers": [
+    {
+      "farmer_id": "F001",
+      "phone_hash": "a3f5e8d9c2b1a4f6e7d8c9b0a1f2e3d4",
+      "name": "Ramesh Kumar",
+      "language": "hi-IN",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "tehsil": "Ludhiana-I",
+      "village": "Khanna",
+      "farm_size_acres": 3.5,
+      "soil_type": "Alluvial",
+      "crops": ["wheat", "rice"],
+      "registration_date": "2025-09-15",
+      "last_active": "2026-02-27",
+      "premium_user": true
+    },
+    {
+      "farmer_id": "F002",
+      "phone_hash": "b4g6f9e0d3c2b5g7f8e9d0c1b2g3f4e5",
+      "name": "Lakshmi Devi",
+      "language": "te-IN",
+      "state": "Telangana",
+      "district": "Warangal",
+      "tehsil": "Warangal Urban",
+      "village": "Hanamkonda",
+      "farm_size_acres": 2.0,
+      "soil_type": "Red Soil",
+      "crops": ["cotton", "chilli"],
+      "registration_date": "2025-10-22",
+      "last_active": "2026-02-28",
+      "premium_user": false
+    }
+  ]
+}
+    ,
+    {
+      "farmer_id": "F003",
+      "phone_hash": "c5h7g0f1e4d3c6h8g9f0e1d2c3h4g5f6",
+      "name": "Suresh Patil",
+      "language": "mr-IN",
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "tehsil": "Dindori",
+      "village": "Pimpalgaon",
+      "farm_size_acres": 4.2,
+      "soil_type": "Black Soil",
+      "crops": ["sugarcane", "onion"],
+      "registration_date": "2025-11-05",
+      "last_active": "2026-02-26",
+      "premium_user": true
+    },
+    {
+      "farmer_id": "F004",
+      "phone_hash": "d6i8h1g2f5e4d7i9h0g1f2e3d4i5h6g7",
+      "name": "Murugan Selvam",
+      "language": "ta-IN",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "tehsil": "Pollachi",
+      "village": "Kinathukadavu",
+      "farm_size_acres": 1.8,
+      "soil_type": "Red Loamy",
+      "crops": ["rice", "turmeric"],
+      "registration_date": "2025-12-10",
+      "last_active": "2026-02-28",
+      "premium_user": false
+    },
+    {
+      "farmer_id": "F005",
+      "phone_hash": "e7j9i2h3g6f5e8j0i1h2g3f4e5j6i7h8",
+      "name": "Rajesh Gowda",
+      "language": "kn-IN",
+      "state": "Karnataka",
+      "district": "Mysuru",
+      "tehsil": "Hunsur",
+      "village": "Bilikere",
+      "farm_size_acres": 2.5,
+      "soil_type": "Laterite",
+      "crops": ["coffee", "areca nut"],
+      "registration_date": "2026-01-08",
+      "last_active": "2026-02-27",
+      "premium_user": true
+    }
+  ]
+}

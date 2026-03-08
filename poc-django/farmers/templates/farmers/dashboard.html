@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Krishi Mitra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌾 AI Krishi Mitra</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard/">{{ trans.dashboard }}</a>
+                <a class="nav-link" href="/chat/">{{ trans.chat }}</a>
+                <a class="nav-link" href="/knowledge/">{{ trans.knowledge }}</a>
+                <a class="nav-link" href="/weather/">{{ trans.weather }}</a>
+                <a class="nav-link" href="/logout/">{{ trans.logout }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2>{{ trans.welcome }}, {{ farmer.user.get_full_name|default:farmer.user.username }}!</h2>
+                <p class="text-muted">{{ trans.your_dashboard }}</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Profile Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">👤 {{ trans.profile }}</h5>
+                        <hr>
+                        <p><strong>{{ trans.phone }}:</strong> {{ farmer.phone_number }}</p>
+                        <p><strong>{{ trans.location }}:</strong> {{ farmer.location }}</p>
+                        <p><strong>{{ trans.crops }}:</strong> {{ farmer.crops|join:", "|default:trans.not_set }}</p>
+                        <p><strong>{{ trans.farm_size }}:</strong> {{ farmer.farm_size|default:trans.not_set }} ha</p>
+                        <p><strong>{{ trans.language }}:</strong> {{ farmer.get_language_display }}</p>
+                        <a href="/profile/setup/" class="btn btn-sm btn-outline-success">{{ trans.edit_profile }}</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">🌤️ {{ trans.weather }}</h5>
+                        <hr>
+                        {% if weather %}
+                        <p><strong>{{ trans.location }}:</strong> {{ weather.location }}</p>
+                        <p><strong>{{ trans.temperature }}:</strong> {{ weather.temperature }}°C</p>
+                        <p><strong>{{ trans.humidity }}:</strong> {{ weather.humidity }}%</p>
+                        <p><strong>{{ trans.conditions }}:</strong> {{ weather.conditions }}</p>
+                        {% else %}
+                        <p class="text-muted">{{ trans.set_location_weather }}</p>
+                        {% endif %}
+                        <a href="/weather/" class="btn btn-sm btn-outline-primary">{{ trans.view_forecast }}</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">⚡ {{ trans.quick_actions }}</h5>
+                        <hr>
+                        <div class="d-grid gap-2">
+                            <a href="/chat/" class="btn btn-success">💬 {{ trans.start_chat }}</a>
+                            <a href="/knowledge/" class="btn btn-info">📚 {{ trans.browse_knowledge }}</a>
+                            <a href="/weather/" class="btn btn-primary">🌤️ {{ trans.check_weather }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Conversations -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">💬 {{ trans.recent_conversations }}</h5>
+                        <hr>
+                        {% if conversations %}
+                        <div class="list-group">
+                            {% for conv in conversations %}
+                            <a href="/chat/{{ conv.id }}/" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ conv.title|default:trans.conversation }}</h6>
+                                    <small>{{ conv.updated_at|date:"M d, Y" }}</small>
+                                </div>
+                                <small class="text-muted">{{ conv.messages.count }} {{ trans.messages }}</small>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p class="text-muted">{{ trans.no_conversations }} <a href="/chat/">{{ trans.start_chatting }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Interactions -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">📊 {{ trans.recent_activity }}</h5>
+                        <hr>
+                        {% if interactions %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>{{ trans.type }}</th>
+                                        <th>{{ trans.query }}</th>
+                                        <th>{{ trans.date }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for interaction in interactions %}
+                                    <tr>
+                                        <td><span class="badge bg-secondary">{{ interaction.interaction_type }}</span></td>
+                                        <td>{{ interaction.query|truncatewords:10 }}</td>
+                                        <td>{{ interaction.created_at|date:"M d, H:i" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <p class="text-muted">{{ trans.no_activity }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

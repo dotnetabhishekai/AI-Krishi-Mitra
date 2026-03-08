@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather - AI Krishi Mitra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌾 AI Krishi Mitra</a>
+            <div class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="/dashboard/">Dashboard</a>
+                <a class="nav-link" href="/chat/">Chat</a>
+                {% endif %}
+                <a class="nav-link" href="/knowledge/">Knowledge</a>
+                <a class="nav-link" href="/weather/">Weather</a>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="/logout/">Logout</a>
+                {% else %}
+                <a class="nav-link" href="/login/">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="mb-4">🌤️ Weather Information</h2>
+
+        <!-- Current Weather -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Current Weather - {{ location }}</h4>
+                        <hr>
+                        {% if weather %}
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <h2>{{ weather.temperature }}°C</h2>
+                                <p class="text-muted">Temperature</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h2>{{ weather.humidity }}%</h2>
+                                <p class="text-muted">Humidity</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h2>{{ weather.rainfall }}mm</h2>
+                                <p class="text-muted">Rainfall</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h2>{{ weather.wind_speed }} km/h</h2>
+                                <p class="text-muted">Wind Speed</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-3">
+                            <strong>Conditions:</strong> {{ weather.conditions }}
+                        </div>
+                        {% else %}
+                        <p class="text-muted">Weather data not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7-Day Forecast -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">7-Day Forecast</h4>
+                        <hr>
+                        {% if forecast %}
+                        <div class="row g-3">
+                            {% for day in forecast %}
+                            <div class="col-md-3 col-lg-2">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6>Day {{ day.day }}</h6>
+                                        <p class="mb-1"><strong>{{ day.temperature }}°C</strong></p>
+                                        <p class="small text-muted mb-1">{{ day.conditions }}</p>
+                                        {% if day.rainfall > 0 %}
+                                        <p class="small text-primary">💧 {{ day.rainfall }}mm</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p class="text-muted">Forecast not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Alerts -->
+        {% if alerts %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-warning">
+                    <div class="card-body">
+                        <h4 class="card-title">⚠️ Weather Alerts</h4>
+                        <hr>
+                        {% for alert in alerts %}
+                        <div class="alert alert-warning">
+                            <strong>{{ alert.type|title }}:</strong> {{ alert.message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Agricultural Advisory -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm bg-success text-white">
+                    <div class="card-body">
+                        <h4 class="card-title">🌾 Agricultural Advisory</h4>
+                        <hr>
+                        <p>Based on current weather conditions:</p>
+                        <ul>
+                            {% if weather.rainfall > 10 %}
+                            <li>Heavy rain expected. Postpone spraying operations.</li>
+                            <li>Ensure proper drainage in fields.</li>
+                            {% elif weather.rainfall > 0 %}
+                            <li>Light rain expected. Good for transplanting.</li>
+                            {% else %}
+                            <li>No rain expected. Ensure adequate irrigation.</li>
+                            {% endif %}
+                            
+                            {% if weather.temperature > 35 %}
+                            <li>High temperature. Increase irrigation frequency.</li>
+                            {% elif weather.temperature < 15 %}
+                            <li>Low temperature. Protect sensitive crops.</li>
+                            {% endif %}
+                            
+                            {% if weather.humidity > 80 %}
+                            <li>High humidity. Monitor for fungal diseases.</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

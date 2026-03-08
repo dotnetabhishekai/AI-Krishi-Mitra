@@ -1,0 +1,112 @@
+{
+  "advisories": [
+    {
+      "advisory_id": "ADV001",
+      "farmer_id": "F001",
+      "crop_id": "C002",
+      "crop_name": "Wheat",
+      "issue_type": "Disease",
+      "issue_name": "Brown Rust",
+      "severity": "Medium",
+      "date_issued": "2026-02-28",
+      "language": "hi-IN",
+      "recommendations": [
+        {
+          "type": "Chemical Treatment",
+          "product": "Propiconazole 25% EC",
+          "dosage": "500ml per acre",
+          "water_volume": "200 liters",
+          "application_method": "Foliar spray",
+          "timing": "Morning or evening",
+          "precautions": [
+            "Avoid spraying in afternoon heat",
+            "No irrigation for 24 hours post-spray",
+            "Wear protective equipment"
+          ]
+        },
+        {
+          "type": "Monitoring",
+          "action": "Check crop after 7 days",
+          "follow_up_date": "2026-03-07"
+        }
+      ],
+      "explanation": "Brown rust common at 109 DAS during heading stage. Weather conditions (temp 24°C, humidity 65%) favorable for fungal growth.",
+      "estimated_cost_inr": 850
+    }
+  ]
+}
+    ,
+    {
+      "advisory_id": "ADV002",
+      "farmer_id": "F002",
+      "crop_id": "C003",
+      "crop_name": "Cotton",
+      "issue_type": "Pest",
+      "issue_name": "Bollworm Infestation",
+      "severity": "High",
+      "date_issued": "2026-02-27",
+      "language": "te-IN",
+      "recommendations": [
+        {
+          "type": "Organic Treatment",
+          "product": "Neem Oil + Bacillus thuringiensis (Bt)",
+          "dosage": "Neem oil 30ml/liter + Bt 1g/liter",
+          "water_volume": "150 liters per acre",
+          "application_method": "Foliar spray",
+          "timing": "Early morning",
+          "frequency": "Every 5 days for 3 applications",
+          "precautions": [
+            "Mix fresh before each spray",
+            "Add sticker for better adhesion",
+            "Spray on both sides of leaves"
+          ]
+        },
+        {
+          "type": "Cultural Practice",
+          "action": "Install pheromone traps",
+          "quantity": "8 traps per acre",
+          "placement": "At canopy height"
+        }
+      ],
+      "explanation": "Bollworm pressure high due to hot weather (34°C). Organic treatment preferred as per farmer preference. Boll formation stage critical.",
+      "estimated_cost_inr": 1200,
+      "alternative_chemical": {
+        "product": "Emamectin Benzoate 5% SG",
+        "dosage": "200g per acre",
+        "cost_inr": 650
+      }
+    },
+    {
+      "advisory_id": "ADV003",
+      "farmer_id": "F003",
+      "crop_id": "C004",
+      "crop_name": "Sugarcane",
+      "issue_type": "Irrigation",
+      "issue_name": "Irrigation Schedule",
+      "severity": "Low",
+      "date_issued": "2026-02-28",
+      "language": "mr-IN",
+      "recommendations": [
+        {
+          "type": "Irrigation Management",
+          "method": "Drip irrigation",
+          "frequency": "Every 7 days",
+          "duration_hours": 4,
+          "water_requirement_mm": 75,
+          "timing": "Early morning (5-9 AM)",
+          "rationale": "Grand growth stage requires consistent moisture. Light rain (2mm) expected but insufficient."
+        },
+        {
+          "type": "Fertigation",
+          "product": "19:19:19 NPK",
+          "dosage": "5kg per acre",
+          "application": "Through drip system",
+          "frequency": "Every 15 days"
+        }
+      ],
+      "explanation": "Sugarcane at 383 DAS in grand growth phase. Drip system optimizes water use. Light rain insufficient for crop needs.",
+      "estimated_cost_inr": 450,
+      "water_savings_percent": 40
+    }
+  ]
+}

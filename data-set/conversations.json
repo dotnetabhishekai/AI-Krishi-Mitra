@@ -1,0 +1,91 @@
+{
+  "conversations": [
+    {
+      "conversation_id": "CONV001",
+      "farmer_id": "F001",
+      "session_id": "S20260228093015",
+      "start_time": "2026-02-28T09:30:15Z",
+      "end_time": "2026-02-28T09:33:42Z",
+      "language": "hi-IN",
+      "channel": "whatsapp_voice",
+      "messages": [
+        {
+          "message_id": "M001",
+          "timestamp": "2026-02-28T09:30:15Z",
+          "sender": "farmer",
+          "type": "voice",
+          "duration_seconds": 12,
+          "transcription": "मेरी गेहूं की फसल में पत्तियों पर भूरे धब्बे दिख रहे हैं। क्या करूं?",
+          "translation_en": "Brown spots are appearing on my wheat crop leaves. What should I do?",
+          "audio_url": "s3://krishi-audio/F001/20260228_093015.mp3",
+          "confidence_score": 0.94
+        },
+        {
+          "message_id": "M002",
+          "timestamp": "2026-02-28T09:30:48Z",
+          "sender": "system",
+          "type": "voice",
+          "duration_seconds": 45,
+          "text": "रमेश जी, आपकी गेहूं की फसल में ब्राउन रस्ट की समस्या हो सकती है। यह 109 दिन की फसल में आम है।"
+        }
+      ]
+    }
+  ]
+}
+ सुझाव: 1) प्रोपिकोनाज़ोल 25% EC @ 500ml प्रति एकड़ स्प्रे करें। 2) अगले 2 दिन बारिश नहीं है, इसलिए आज या कल स्प्रे कर सकते हैं। 3) 7 दिन बाद दोबारा जांच करें। क्या आप ऑर्गेनिक उपचार चाहते हैं?",
+          "translation_en": "Ramesh ji, your wheat crop may have Brown Rust problem. This is common at 109 days. Suggestion: 1) Spray Propiconazole 25% EC @ 500ml per acre. 2) No rain for next 2 days, so you can spray today or tomorrow. 3) Check again after 7 days. Do you want organic treatment?",
+          "audio_url": "s3://krishi-audio/system/20260228_093048.mp3",
+          "advisory_id": "ADV001"
+        },
+        {
+          "message_id": "M003",
+          "timestamp": "2026-02-28T09:31:25Z",
+          "sender": "farmer",
+          "type": "voice",
+          "duration_seconds": 8,
+          "transcription": "नहीं, केमिकल स्प्रे ठीक है। कितना पानी मिलाऊं?",
+          "translation_en": "No, chemical spray is fine. How much water should I mix?",
+          "audio_url": "s3://krishi-audio/F001/20260228_093125.mp3",
+          "confidence_score": 0.96
+        },
+        {
+          "message_id": "M004",
+          "timestamp": "2026-02-28T09:31:52Z",
+          "sender": "system",
+          "type": "voice",
+          "duration_seconds": 30,
+          "text": "500ml दवा को 200 लीटर पानी में मिलाएं। यह 2 एकड़ के लिए पर्याप्त है। सुबह या शाम को स्प्रे करें, दोपहर में नहीं। स्प्रे के बाद 24 घंटे तक सिंचाई न करें। क्या और कुछ जानना चाहते हैं?",
+          "translation_en": "Mix 500ml medicine in 200 liters of water. This is sufficient for 2 acres. Spray in morning or evening, not afternoon. Don't irrigate for 24 hours after spray. Do you want to know anything else?",
+          "audio_url": "s3://krishi-audio/system/20260228_093152.mp3"
+        },
+        {
+          "message_id": "M005",
+          "timestamp": "2026-02-28T09:32:15Z",
+          "sender": "farmer",
+          "type": "voice",
+          "duration_seconds": 5,
+          "transcription": "नहीं, धन्यवाद।",
+          "translation_en": "No, thank you.",
+          "audio_url": "s3://krishi-audio/F001/20260228_093215.mp3",
+          "confidence_score": 0.98
+        },
+        {
+          "message_id": "M006",
+          "timestamp": "2026-02-28T09:32:28Z",
+          "sender": "system",
+          "type": "voice",
+          "duration_seconds": 15,
+          "text": "ठीक है रमेश जी। मैं 7 दिन बाद आपको याद दिलाऊंगा कि फसल की जांच करें। शुभ दिन!",
+          "translation_en": "Okay Ramesh ji. I will remind you after 7 days to check the crop. Good day!",
+          "audio_url": "s3://krishi-audio/system/20260228_093228.mp3"
+        }
+      ],
+      "summary": {
+        "issue": "Brown rust on wheat leaves",
+        "solution_provided": "Propiconazole spray with dosage instructions",
+        "follow_up_scheduled": "2026-03-07",
+        "farmer_satisfaction": 5
+      }
+    }
+  ]
+}

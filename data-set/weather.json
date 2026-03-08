@@ -1,0 +1,92 @@
+{
+  "weather_forecasts": [
+    {
+      "forecast_id": "W001",
+      "district": "Ludhiana",
+      "tehsil": "Ludhiana-I",
+      "latitude": 30.9010,
+      "longitude": 75.8573,
+      "date": "2026-02-28",
+      "temperature_max_c": 24,
+      "temperature_min_c": 12,
+      "humidity_percent": 65,
+      "rainfall_mm": 0,
+      "wind_speed_kmh": 12,
+      "conditions": "Partly Cloudy",
+      "uv_index": 6,
+      "forecast_type": "48_hour"
+    },
+    {
+      "forecast_id": "W002",
+      "district": "Ludhiana",
+      "tehsil": "Ludhiana-I",
+      "latitude": 30.9010,
+      "longitude": 75.8573,
+      "date": "2026-03-01",
+      "temperature_max_c": 26,
+      "temperature_min_c": 14,
+      "humidity_percent": 60,
+      "rainfall_mm": 0,
+      "wind_speed_kmh": 15,
+      "conditions": "Clear Sky",
+      "uv_index": 7,
+      "forecast_type": "48_hour"
+    }
+  ]
+}
+    ,
+    {
+      "forecast_id": "W003",
+      "district": "Warangal",
+      "tehsil": "Warangal Urban",
+      "latitude": 17.9689,
+      "longitude": 79.5941,
+      "date": "2026-02-28",
+      "temperature_max_c": 34,
+      "temperature_min_c": 22,
+      "humidity_percent": 45,
+      "rainfall_mm": 0,
+      "wind_speed_kmh": 18,
+      "conditions": "Hot and Dry",
+      "uv_index": 9,
+      "forecast_type": "48_hour"
+    },
+    {
+      "forecast_id": "W004",
+      "district": "Nashik",
+      "tehsil": "Dindori",
+      "latitude": 20.0063,
+      "longitude": 73.7679,
+      "date": "2026-02-28",
+      "temperature_max_c": 32,
+      "temperature_min_c": 18,
+      "humidity_percent": 55,
+      "rainfall_mm": 2,
+      "wind_speed_kmh": 10,
+      "conditions": "Light Rain Expected",
+      "uv_index": 7,
+      "forecast_type": "48_hour",
+      "alert": {
+        "type": "Light Rain",
+        "severity": "Low",
+        "message": "Light rainfall expected. Good for irrigation."
+      }
+    }
+  ],
+  "weather_alerts": [
+    {
+      "alert_id": "A001",
+      "district": "Coimbatore",
+      "alert_type": "Heat Wave",
+      "severity": "High",
+      "start_date": "2026-03-02",
+      "end_date": "2026-03-05",
+      "description": "Temperature expected to exceed 40°C for 3 consecutive days",
+      "recommendations": [
+        "Increase irrigation frequency",
+        "Apply mulch to retain soil moisture",
+        "Avoid fertilizer application during peak heat"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+# ------------------------------
+# Python bytecode and caches
+# ------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.hypothesis/
+
+# ------------------------------
+# Virtual environments
+# ------------------------------
+venv/
+.venv/
+env/
+.envrc
+poc-django/venv/
+poc-django/venv*/
+
+# ------------------------------
+# Secrets and local env files
+# ------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ------------------------------
+# Django runtime and local files
+# ------------------------------
+db.sqlite3
+poc-django/db.sqlite3
+*.log
+media/
+poc-django/media/
+staticfiles/
+poc-django/staticfiles/
+
+# ------------------------------
+# Build / packaging artifacts
+# ------------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# ------------------------------
+# Coverage / test output
+# ------------------------------
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+nosetests.xml
+
+# ------------------------------
+# IDE / editor / OS files
+# ------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store

@@ -1,0 +1,129 @@
+{
+  "diseases": [
+    {
+      "disease_id": "D001",
+      "disease_name": "Brown Rust",
+      "crop": "Wheat",
+      "scientific_name": "Puccinia triticina",
+      "symptoms": [
+        "Small circular to oval brown pustules on leaves",
+        "Pustules primarily on upper leaf surface",
+        "Yellow halo around pustules",
+        "Premature leaf drying"
+      ],
+      "favorable_conditions": {
+        "temperature_range_c": [15, 25],
+        "humidity_percent": ">60",
+        "weather": "Cool nights, warm days"
+      },
+      "growth_stages_affected": [5, 6, 7],
+      "severity_levels": {
+        "low": "Few pustules, <10% leaf area",
+        "medium": "Moderate pustules, 10-30% leaf area",
+        "high": "Severe infection, >30% leaf area"
+      },
+      "treatments": [
+        {
+          "type": "Chemical",
+          "products": ["Propiconazole", "Tebuconazole", "Mancozeb"],
+          "effectiveness": "High"
+        },
+        {
+          "type": "Organic",
+          "products": ["Neem oil", "Copper fungicide"],
+          "effectiveness": "Medium"
+        }
+      ],
+      "prevention": [
+        "Use resistant varieties",
+        "Timely sowing",
+        "Balanced fertilization"
+      ]
+    }
+  ]
+}
+    ,
+    {
+      "disease_id": "D002",
+      "disease_name": "Bacterial Blight",
+      "crop": "Cotton",
+      "scientific_name": "Xanthomonas citri pv. malvacearum",
+      "symptoms": [
+        "Water-soaked angular lesions on leaves",
+        "Black arm symptoms on stems",
+        "Boll rot in severe cases",
+        "Leaf drop and defoliation"
+      ],
+      "favorable_conditions": {
+        "temperature_range_c": [25, 35],
+        "humidity_percent": ">70",
+        "weather": "High humidity with rain"
+      },
+      "growth_stages_affected": [4, 5, 6],
+      "severity_levels": {
+        "low": "Few lesions, <5% plants affected",
+        "medium": "Moderate spread, 5-20% plants",
+        "high": "Severe outbreak, >20% plants"
+      },
+      "treatments": [
+        {
+          "type": "Chemical",
+          "products": ["Streptocycline", "Copper oxychloride"],
+          "effectiveness": "Medium"
+        },
+        {
+          "type": "Organic",
+          "products": ["Pseudomonas fluorescens", "Bacillus subtilis"],
+          "effectiveness": "Medium"
+        }
+      ],
+      "prevention": [
+        "Use disease-free seeds",
+        "Crop rotation",
+        "Remove infected plant debris",
+        "Avoid overhead irrigation"
+      ]
+    },
+    {
+      "disease_id": "D003",
+      "disease_name": "Blast",
+      "crop": "Rice",
+      "scientific_name": "Magnaporthe oryzae",
+      "symptoms": [
+        "Diamond-shaped lesions on leaves",
+        "Gray-white centers with brown margins",
+        "Neck rot at panicle stage",
+        "Reduced grain filling"
+      ],
+      "favorable_conditions": {
+        "temperature_range_c": [20, 28],
+        "humidity_percent": ">90",
+        "weather": "Prolonged leaf wetness"
+      },
+      "growth_stages_affected": [3, 4, 5, 6],
+      "severity_levels": {
+        "low": "Scattered lesions, <10% tillers",
+        "medium": "Moderate infection, 10-30% tillers",
+        "high": "Severe blast, >30% tillers, neck rot"
+      },
+      "treatments": [
+        {
+          "type": "Chemical",
+          "products": ["Tricyclazole", "Isoprothiolane", "Carbendazim"],
+          "effectiveness": "High"
+        },
+        {
+          "type": "Organic",
+          "products": ["Trichoderma viride", "Neem cake"],
+          "effectiveness": "Low to Medium"
+        }
+      ],
+      "prevention": [
+        "Use resistant varieties",
+        "Avoid excessive nitrogen",
+        "Maintain proper water levels",
+        "Seed treatment before sowing"
+      ]
+    }
+  ]
+}

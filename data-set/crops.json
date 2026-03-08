@@ -1,0 +1,64 @@
+{
+  "crops": [
+    {
+      "crop_id": "C001",
+      "crop_name": "Rice",
+      "varieties": ["Basmati", "IR64", "Swarna", "Sona Masuri"],
+      "growth_stages": [
+        {"stage": 1, "name": "Land Preparation", "duration_days": 15},
+        {"stage": 2, "name": "Sowing/Transplanting", "duration_days": 10},
+        {"stage": 3, "name": "Tillering", "duration_days": 25},
+        {"stage": 4, "name": "Stem Elongation", "duration_days": 20},
+        {"stage": 5, "name": "Panicle Initiation", "duration_days": 15},
+        {"stage": 6, "name": "Flowering", "duration_days": 10},
+        {"stage": 7, "name": "Grain Filling", "duration_days": 25},
+        {"stage": 8, "name": "Maturity/Harvest", "duration_days": 10}
+      ],
+      "total_duration_days": 130,
+      "water_requirement": "High",
+      "suitable_soil": ["Alluvial", "Clay Loam"],
+      "common_diseases": ["Blast", "Sheath Blight", "Brown Spot"]
+    },
+    {
+      "crop_id": "C002",
+      "crop_name": "Wheat",
+      "varieties": ["HD2967", "PBW343", "Lok1", "DBW17"],
+      "growth_stages": [
+        {"stage": 1, "name": "Land Preparation", "duration_days": 10},
+        {"stage": 2, "name": "Sowing", "duration_days": 5}
+      ]
+}
+        ,
+        {"stage": 3, "name": "Germination", "duration_days": 10},
+        {"stage": 4, "name": "Tillering", "duration_days": 30},
+        {"stage": 5, "name": "Jointing", "duration_days": 20},
+        {"stage": 6, "name": "Booting", "duration_days": 15},
+        {"stage": 7, "name": "Heading/Flowering", "duration_days": 10},
+        {"stage": 8, "name": "Grain Filling/Harvest", "duration_days": 25}
+      ],
+      "total_duration_days": 125,
+      "water_requirement": "Medium",
+      "suitable_soil": ["Alluvial", "Loamy"],
+      "common_diseases": ["Rust", "Powdery Mildew", "Karnal Bunt"]
+    },
+    {
+      "crop_id": "C003",
+      "crop_name": "Cotton",
+      "varieties": ["Bt Cotton", "Suraj", "Bunny", "RCH-2"],
+      "growth_stages": [
+        {"stage": 1, "name": "Land Preparation", "duration_days": 15},
+        {"stage": 2, "name": "Sowing", "duration_days": 5},
+        {"stage": 3, "name": "Germination", "duration_days": 10},
+        {"stage": 4, "name": "Vegetative Growth", "duration_days": 45},
+        {"stage": 5, "name": "Flowering", "duration_days": 30},
+        {"stage": 6, "name": "Boll Formation", "duration_days": 40},
+        {"stage": 7, "name": "Boll Opening", "duration_days": 20},
+        {"stage": 8, "name": "Harvest", "duration_days": 15}
+      ],
+      "total_duration_days": 180,
+      "water_requirement": "Medium",
+      "suitable_soil": ["Black Soil", "Red Soil"],
+      "common_diseases": ["Leaf Curl", "Bacterial Blight", "Wilt"]
+    }
+  ]
+}

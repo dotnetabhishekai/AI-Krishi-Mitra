@@ -1,0 +1,99 @@
+{
+  "market_prices": [
+    {
+      "price_id": "MP001",
+      "commodity": "Wheat",
+      "variety": "PBW343",
+      "market_name": "Ludhiana Mandi",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "date": "2026-02-28",
+      "price_per_quintal_inr": 2125,
+      "msp_inr": 2125,
+      "price_trend": "Stable",
+      "arrival_quantity_tonnes": 450,
+      "quality_grade": "FAQ"
+    },
+    {
+      "price_id": "MP002",
+      "commodity": "Cotton",
+      "variety": "Medium Staple",
+      "market_name": "Warangal APMC",
+      "state": "Telangana",
+      "district": "Warangal",
+      "date": "2026-02-28",
+      "price_per_quintal_inr": 6850,
+      "msp_inr": 6620,
+      "price_trend": "Rising",
+      "arrival_quantity_tonnes": 125,
+      "quality_grade": "A"
+    },
+    {
+      "price_id": "MP003",
+      "commodity": "Sugarcane",
+      "variety": "General",
+      "market_name": "Nashik Sugar Factory",
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "date": "2026-02-28",
+      "price_per_tonne_inr": 3100,
+      "msp_inr": 3150,
+      "price_trend": "Declining",
+      "arrival_quantity_tonnes": 2500,
+      "quality_grade": "Standard"
+    }
+  ]
+}
+    ,
+    {
+      "price_id": "MP004",
+      "commodity": "Rice",
+      "variety": "Sona Masuri",
+      "market_name": "Coimbatore Regulated Market",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "date": "2026-02-28",
+      "price_per_quintal_inr": 3850,
+      "msp_inr": 2183,
+      "price_trend": "Stable",
+      "arrival_quantity_tonnes": 320,
+      "quality_grade": "Grade A"
+    },
+    {
+      "price_id": "MP005",
+      "commodity": "Turmeric",
+      "variety": "Finger",
+      "market_name": "Erode Turmeric Market",
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "date": "2026-02-28",
+      "price_per_quintal_inr": 12500,
+      "msp_inr": 0,
+      "price_trend": "Rising",
+      "arrival_quantity_tonnes": 85,
+      "quality_grade": "Premium"
+    }
+  ],
+  "price_alerts": [
+    {
+      "alert_id": "PA001",
+      "farmer_id": "F001",
+      "commodity": "Wheat",
+      "alert_type": "Price Above MSP+10%",
+      "threshold_inr": 2338,
+      "current_price_inr": 2125,
+      "status": "Not Triggered",
+      "created_date": "2026-02-15"
+    },
+    {
+      "alert_id": "PA002",
+      "farmer_id": "F002",
+      "commodity": "Cotton",
+      "alert_type": "Price Above MSP+10%",
+      "threshold_inr": 7282,
+      "current_price_inr": 6850,
+      "status": "Not Triggered",
+      "created_date": "2026-02-10"
+    }
+  ]
+}

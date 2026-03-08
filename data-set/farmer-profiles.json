@@ -1,0 +1,107 @@
+{
+  "farmer_profiles": [
+    {
+      "farmer_id": "F001",
+      "current_crops": [
+        {
+          "crop_id": "C002",
+          "crop_name": "Wheat",
+          "variety": "PBW343",
+          "sowing_date": "2025-11-10",
+          "days_after_sowing": 109,
+          "current_stage": 7,
+          "stage_name": "Heading/Flowering",
+          "expected_harvest": "2026-03-15",
+          "area_acres": 2.0,
+          "soil_test_date": "2025-10-15",
+          "soil_ph": 7.2,
+          "nitrogen_level": "Medium",
+          "phosphorus_level": "Low",
+          "potassium_level": "High"
+        },
+        {
+          "crop_id": "C001",
+          "crop_name": "Rice",
+          "variety": "Basmati",
+          "sowing_date": "2025-06-20",
+          "days_after_sowing": 252,
+          "current_stage": 8,
+          "stage_name": "Harvested",
+          "harvest_date": "2025-10-28",
+          "area_acres": 1.5,
+          "yield_kg_per_acre": 1850,
+          "quality_grade": "A"
+        }
+      ],
+      "preferences": {
+        "communication_time": "morning",
+        "voice_preference": true,
+        "organic_farming": false
+      }
+    }
+  ]
+}
+    ,
+    {
+      "farmer_id": "F002",
+      "current_crops": [
+        {
+          "crop_id": "C003",
+          "crop_name": "Cotton",
+          "variety": "Bt Cotton",
+          "sowing_date": "2025-06-15",
+          "days_after_sowing": 257,
+          "current_stage": 8,
+          "stage_name": "Harvest",
+          "expected_harvest": "2026-03-10",
+          "area_acres": 2.0,
+          "soil_test_date": "2025-05-20",
+          "soil_ph": 6.8,
+          "nitrogen_level": "High",
+          "phosphorus_level": "Medium",
+          "potassium_level": "Medium",
+          "pest_history": [
+            {
+              "pest_name": "Bollworm",
+              "detected_date": "2025-08-15",
+              "treatment": "Neem oil spray",
+              "effectiveness": "Good"
+            }
+          ]
+        }
+      ],
+      "preferences": {
+        "communication_time": "evening",
+        "voice_preference": true,
+        "organic_farming": true
+      }
+    },
+    {
+      "farmer_id": "F003",
+      "current_crops": [
+        {
+          "crop_id": "C004",
+          "crop_name": "Sugarcane",
+          "variety": "Co 86032",
+          "sowing_date": "2025-02-10",
+          "days_after_sowing": 383,
+          "current_stage": 5,
+          "stage_name": "Grand Growth",
+          "expected_harvest": "2026-04-15",
+          "area_acres": 3.0,
+          "irrigation_method": "Drip",
+          "soil_test_date": "2025-01-15",
+          "soil_ph": 7.5,
+          "nitrogen_level": "High",
+          "phosphorus_level": "High",
+          "potassium_level": "Medium"
+        }
+      ],
+      "preferences": {
+        "communication_time": "afternoon",
+        "voice_preference": true,
+        "organic_farming": false
+      }
+    }
+  ]
+}

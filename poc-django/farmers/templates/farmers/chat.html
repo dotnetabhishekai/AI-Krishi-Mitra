@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - AI Krishi Mitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --forest-900: #1f5e3a;
+            --forest-800: #277247;
+            --forest-700: #2f8a54;
+            --mint-100: #d9e9df;
+            --mint-200: #c5ddd0;
+            --paper: #f4f2ee;
+            --panel: #f2f1ee;
+            --ink: #20352a;
+            --muted: #6e7c74;
+            --accent: #e5a72f;
+            --shadow: 0 12px 30px rgba(26, 49, 37, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Nunito Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 80% 15%, #eef4ee 0%, rgba(238, 244, 238, 0) 42%),
+                radial-gradient(circle at 10% 90%, #e6efe7 0%, rgba(230, 239, 231, 0) 46%),
+                #e9ece8;
+            padding: 8px;
+        }
+
+        .chat-app {
+            max-width: 1400px;
+            height: calc(100vh - 16px);
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            background: var(--paper);
+            animation: fade-in 0.5s ease;
+        }
+
+        .sidebar {
+            background: linear-gradient(165deg, #265f3b, #1f5535 65%);
+            color: #f4fbf7;
+            padding: 14px 12px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-title {
+            font-family: "Merriweather", serif;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            color: rgba(233, 247, 239, 0.86);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .new-conv-btn {
+            display: block;
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 10px;
+            background: var(--forest-700);
+            color: #eff8f3;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 14px;
+        }
+
+        .new-conv-btn:hover {
+            background: #38a164;
+            color: #fff;
+        }
+
+        .conv-list {
+            display: grid;
+            gap: 10px;
+            max-height: calc(100vh - 160px);
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .conv-item {
+            display: block;
+            border-radius: 12px;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #d9f0e2;
+            border: 1px solid rgba(220, 248, 232, 0.16);
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .conv-item:hover {
+            transform: translateY(-1px);
+            background: rgba(60, 153, 98, 0.26);
+            color: #f7fffa;
+        }
+
+        .conv-item.active {
+            background: rgba(68, 177, 112, 0.36);
+            border-color: rgba(167, 239, 196, 0.45);
+            color: #fff;
+        }
+
+        .conv-item .title {
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 2px;
+        }
+
+        .conv-item .date,
+        .conv-item .preview {
+            font-size: 12px;
+            line-height: 1.25;
+            color: rgba(232, 250, 240, 0.8);
+        }
+
+        .main-stage {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 235px;
+            min-height: 0;
+        }
+
+        .chat-panel {
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 0;
+            background: #f7f6f3;
+            border-right: 1px solid #d8ddd8;
+        }
+
+        .chat-topbar {
+            background: linear-gradient(90deg, var(--forest-800), #2b7f4f);
+            color: #f8fff9;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Merriweather", serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .brand-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #efc14b;
+            color: #1e4f35;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            line-height: 1;
+        }
+
+        .top-links {
+            display: flex;
+            gap: 16px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .top-links a {
+            color: #ebf8ee;
+            text-decoration: none;
+        }
+
+        .top-links a:hover {
+            color: #fff;
+        }
+
+        .chat-header {
+            background: var(--forest-800);
+            color: #f0fff4;
+            padding: 12px 22px;
+        }
+
+        .chat-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Merriweather", serif;
+            font-size: 30px;
+            margin: 0;
+        }
+
+        .header-logo {
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .chat-header-sub {
+            margin-top: 2px;
+            color: #cde8d8;
+            font-size: 13px;
+        }
+
+        .chat-container {
+            overflow-y: auto;
+            padding: 18px 20px;
+            min-height: 0;
+        }
+
+        .message {
+            width: fit-content;
+            max-width: min(520px, 78%);
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin: 0 0 14px;
+            animation: slide-up 0.25s ease;
+        }
+
+        .message-ai {
+            background: #efeeeb;
+            color: #25362c;
+        }
+
+        .message-farmer {
+            margin-left: auto;
+            background: var(--forest-800);
+            color: #f4fff7;
+            text-align: left;
+        }
+
+        .message-label {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: #4c6d5a;
+        }
+
+        .message-farmer .message-label {
+            color: #cde6d8;
+        }
+
+        .message-time {
+            margin-top: 5px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .chat-input-wrap {
+            border-top: 1px solid #d9ded9;
+            background: #f4f3f0;
+            padding: 14px 16px;
+        }
+
+        .input-shell {
+            border: 1px solid #d7ddd7;
+            border-radius: 14px;
+            background: #efefec;
+            display: flex;
+            align-items: center;
+            padding: 4px 6px 4px 10px;
+            gap: 8px;
+        }
+
+        #messageInput {
+            border: 0;
+            background: transparent;
+            width: 100%;
+            height: 40px;
+            color: #274130;
+            font-weight: 600;
+        }
+
+        #chatLanguage {
+            border: 1px solid #d1d8d2;
+            border-radius: 9px;
+            background: #f6f7f4;
+            color: #355643;
+            height: 34px;
+            padding: 0 8px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        #chatLanguage:focus {
+            outline: none;
+            border-color: #96b7a4;
+        }
+
+        #messageInput:focus {
+            outline: none;
+        }
+
+        .composer-btn {
+            border: none;
+            width: 38px;
+            height: 38px;
+            font-size: 0;
+            display: grid;
+            place-items: center;
+            padding: 0;
+        }
+
+        .mini-btn {
+            border-radius: 10px;
+            background: #dfe8e2;
+            color: #3c5f4a;
+        }
+
+        .mini-btn svg,
+        .send-btn svg,
+        .voice-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .send-btn {
+            border-radius: 10px;
+            background: #9bc6ab;
+            color: #fff;
+        }
+
+        .voice-btn {
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .voice-btn.recording {
+            background: #d96a2e;
+            box-shadow: 0 0 0 4px rgba(217, 106, 46, 0.22);
+            animation: pulse-voice 1.1s ease-in-out infinite;
+        }
+
+        .info-panel {
+            background: var(--panel);
+            padding: 14px 12px;
+            overflow-y: auto;
+        }
+
+        .info-card {
+            border: 1px solid #d0d6d2;
+            border-radius: 12px;
+            background: #f7f5f1;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(55, 77, 64, 0.06);
+        }
+
+        .profile-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #d8e4dc;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            color: #2a603e;
+        }
+
+        .profile-name {
+            font-family: "Merriweather", serif;
+            font-weight: 700;
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .subtle {
+            color: var(--muted);
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .card-title {
+            font-family: "Merriweather", serif;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .action-link {
+            display: block;
+            background: var(--mint-100);
+            border-radius: 10px;
+            padding: 8px 10px;
+            margin-bottom: 7px;
+            text-decoration: none;
+            color: #1d4d34;
+            font-weight: 700;
+        }
+
+        .action-link:hover {
+            background: var(--mint-200);
+            color: #163b28;
+        }
+
+        .welcome-empty {
+            margin-top: 40px;
+            text-align: center;
+            color: #5c6f65;
+            animation: fade-in 0.35s ease;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-voice {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 1120px) {
+            .main-stage {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .info-panel {
+                display: none;
+            }
+
+            .brand {
+                font-size: 24px;
+            }
+
+            .chat-header-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .chat-app {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: calc(100vh - 16px);
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            .conv-list {
+                max-height: 220px;
+            }
+
+            .chat-panel {
+                border-right: none;
+                min-height: 72vh;
+            }
+
+            .top-links {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .message {
+                max-width: 88%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-app">
+        <aside class="sidebar">
+            <div class="sidebar-title">Conversations</div>
+            <a href="/chat/" class="new-conv-btn">+ New Conversation</a>
+            <div class="conv-list">
+                {% for conv in all_conversations %}
+                <a href="/chat/{{ conv.id }}/" class="conv-item {% if conv.id == conversation_id %}active{% endif %}">
+                    <div class="title">{{ conv.title|default:"Conversation"|truncatewords:3 }}</div>
+                    <div class="date">{{ conv.updated_at|date:"M d" }}</div>
+                    <div class="preview">{{ conv.messages.last.content|default:"Start chatting with AI Krishi Mitra"|truncatewords:6 }}</div>
+                </a>
+                {% empty %}
+                <div class="conv-item">
+                    {% if guest_mode %}
+                    <div class="title">Guest Chat Enabled</div>
+                    <div class="preview">Share your area and problem to get started.</div>
+                    {% else %}
+                    <div class="title">No conversations yet</div>
+                    <div class="preview">Create your first conversation.</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <main class="main-stage">
+            <section class="chat-panel">
+                <div class="chat-topbar">
+                    <div class="brand">
+                        <span class="brand-logo" aria-hidden="true">🌾</span>
+                        <span class="brand-name">AI Krishi Mitra</span>
+                    </div>
+                    <div class="top-links">
+                        {% if guest_mode %}
+                        <a href="/login/">Login</a>
+                        <a href="/register/">Register</a>
+                        {% else %}
+                        <a href="/dashboard/">Dashboard</a>
+                        <a href="/logout/">Logout</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="chat-header">
+                    <h1 class="chat-header-title"><span class="header-logo" aria-hidden="true">🌾</span>AI Krishi Mitra</h1>
+                    <div class="chat-header-sub">
+                        {% if guest_mode %}
+                        Guest mode: tell your area and main problem first.
+                        {% else %}
+                        Your farming assistant
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="chat-container" id="chatContainer">
+                    {% for msg in messages %}
+                    <div class="message message-{{ msg.sender_type }}">
+                        <div class="message-label">{% if msg.sender_type == 'ai' %}Krishi Mitra{% else %}You{% endif %}</div>
+                        <div>{{ msg.content }}</div>
+                        <div class="message-time">{{ msg.created_at|date:"H:i" }}</div>
+                    </div>
+                    {% empty %}
+                    <div class="welcome-empty">
+                        <p><strong>Welcome!</strong> Ask me anything about farming.</p>
+                        <p>Try: "What is the weather today?" or "How to grow rice?"</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="chat-input-wrap">
+                    <form id="messageForm">
+                        {% csrf_token %}
+                        <div class="input-shell">
+                            <input type="text" id="messageInput" placeholder="Type your message..." required>
+                            <select id="chatLanguage" title="Select language" aria-label="Select language">
+                                <option value="en" {% if farmer.language == 'en' %}selected{% endif %}>English</option>
+                                <option value="hi" {% if farmer.language == 'hi' %}selected{% endif %}>Hindi</option>
+                                <option value="te" {% if farmer.language == 'te' %}selected{% endif %}>Telugu</option>
+                                <option value="ta" {% if farmer.language == 'ta' %}selected{% endif %}>Tamil</option>
+                                <option value="mr" {% if farmer.language == 'mr' %}selected{% endif %}>Marathi</option>
+                                <option value="kn" {% if farmer.language == 'kn' %}selected{% endif %}>Kannada</option>
+                                <option value="bn" {% if farmer.language == 'bn' %}selected{% endif %}>Bengali</option>
+                                <option value="gu" {% if farmer.language == 'gu' %}selected{% endif %}>Gujarati</option>
+                            </select>
+                            <button type="button" class="composer-btn mini-btn" id="imageBtn" title="Upload image" aria-label="Upload image">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M4 7h4l2-2h4l2 2h4v12H4z"></path>
+                                    <circle cx="12" cy="13" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button type="submit" class="composer-btn send-btn" title="Send" aria-label="Send">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M22 2L11 13"></path>
+                                    <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                                </svg>
+                            </button>
+                            <button type="button" class="composer-btn voice-btn" id="voiceBtn" title="Voice input" aria-label="Voice input">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M12 15a3 3 0 0 0 3-3V8a3 3 0 1 0-6 0v4a3 3 0 0 0 3 3z"></path>
+                                    <path d="M19 11a7 7 0 0 1-14 0"></path>
+                                    <path d="M12 18v3"></path>
+                                    <path d="M9 21h6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                </div>
+            </section>
+
+            <aside class="info-panel">
+                <div class="info-card">
+                    {% if farmer %}
+                    <div class="profile-row">
+                        <div class="avatar">{{ farmer.user.first_name|default:farmer.user.username|slice:":1"|upper }}</div>
+                        <div>
+                            <p class="profile-name">{{ farmer.user.get_full_name|default:farmer.user.username }}</p>
+                            <p class="subtle">Farmer</p>
+                        </div>
+                    </div>
+                    <p class="subtle">&#128205; {{ farmer.location|default:"Location not set" }}</p>
+                    <p class="subtle">&#127806; {{ farmer.crops|join:", "|default:"No crops added" }}</p>
+                    <p class="subtle">&#128197; Member since {{ farmer.created_at|date:"M Y" }}</p>
+                    {% else %}
+                    <div class="profile-row">
+                        <div class="avatar">G</div>
+                        <div>
+                            <p class="profile-name">Guest Farmer</p>
+                            <p class="subtle">Not logged in</p>
+                        </div>
+                    </div>
+                    <p class="subtle">Step 1: Share your area (village, district, state).</p>
+                    <p class="subtle">Step 2: Share your farming problem.</p>
+                    <p class="subtle">Then continue chatting normally.</p>
+                    {% endif %}
+                </div>
+
+                <div class="info-card">
+                    <div class="card-title">Quick Actions</div>
+                    <a class="action-link" href="/weather/">&#127780; Check Weather</a>
+                    <a class="action-link" href="/knowledge/">&#128161; Soil Analysis</a>
+                    <a class="action-link" href="/knowledge/">&#128202; Market Prices</a>
+                    <a class="action-link" href="/knowledge/">&#128027; Pest Alert</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-title">Voice Support</div>
+                    <p class="subtle">Use the microphone button to start voice chat. Hindi and English are both supported.</p>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const conversationId = parseInt('{{ conversation_id|default:0 }}', 10);
+        const chatContainer = document.getElementById('chatContainer');
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatLanguage = document.getElementById('chatLanguage');
+        const voiceBtn = document.getElementById('voiceBtn');
+
+        let isRecording = false;
+        let mediaStream = null;
+        let audioContext = null;
+        let sourceNode = null;
+        let processorNode = null;
+        let transcribeSocket = null;
+        let transcribeErrorShown = false;
+        let lastInputWasVoice = false;
+        let activeAudioPlayer = null;
+
+        // Auto-scroll to bottom
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        scrollToBottom();
+
+        function speakFallback(text, languageCode) {
+            if (!('speechSynthesis' in window) || !text) {
+                return;
+            }
+
+            const langMap = {
+                en: 'en-IN',
+                hi: 'hi-IN',
+                te: 'te-IN',
+                ta: 'ta-IN',
+                mr: 'mr-IN',
+                kn: 'kn-IN',
+                bn: 'bn-IN',
+                gu: 'gu-IN',
+            };
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langMap[languageCode] || 'en-IN';
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function playVoiceResponse(audioUrl, textFallback) {
+            if (activeAudioPlayer) {
+                activeAudioPlayer.pause();
+                activeAudioPlayer = null;
+            }
+
+            if (audioUrl) {
+                activeAudioPlayer = new Audio(audioUrl);
+                activeAudioPlayer.play().catch(() => {
+                    speakFallback(textFallback, chatLanguage ? chatLanguage.value : 'en');
+                });
+                return;
+            }
+
+            speakFallback(textFallback, chatLanguage ? chatLanguage.value : 'en');
+        }
+
+        // Send message
+        messageForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            const submittedAsVoice = lastInputWasVoice;
+            lastInputWasVoice = false;
+
+            // Add farmer message to UI
+            addMessage(message, 'farmer');
+            messageInput.value = '';
+
+            try {
+                const response = await fetch('/api/send-message/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({
+                        conversation_id: conversationId,
+                        message: message,
+                        language: chatLanguage ? chatLanguage.value : 'en',
+                        input_mode: submittedAsVoice ? 'voice' : 'text'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    const aiText = (data.ai_message && data.ai_message.content) || data.response || '';
+                    if (aiText) {
+                        addMessage(aiText, 'ai');
+                    }
+
+                    if (submittedAsVoice) {
+                        playVoiceResponse(data.audio_url, aiText);
+                    }
+                } else {
+                    const errorText = data.error || 'Failed to send message';
+                    alert('Error: ' + errorText);
+                    if (submittedAsVoice) {
+                        playVoiceResponse(data.audio_url, errorText);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const fallbackText = 'Failed to send message. Please try again.';
+                alert(fallbackText);
+                if (submittedAsVoice) {
+                    playVoiceResponse(null, fallbackText);
+                }
+            }
+        });
+
+        // Add message to UI
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${sender}`;
+            
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ':' + 
+                        now.getMinutes().toString().padStart(2, '0');
+            
+            messageDiv.innerHTML = `
+                <div class="message-label">${sender === 'ai' ? 'Krishi Mitra' : 'You'}</div>
+                <div>${content}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function buildTranscribeWsUrl() {
+            const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            const language = chatLanguage ? chatLanguage.value : 'en';
+            return `${protocol}://${window.location.host}/ws/transcribe/?lang=${encodeURIComponent(language)}`;
+        }
+
+        function floatTo16BitPCM(floatBuffer) {
+            const buffer = new ArrayBuffer(floatBuffer.length * 2);
+            const view = new DataView(buffer);
+
+            for (let i = 0; i < floatBuffer.length; i += 1) {
+                const sample = Math.max(-1, Math.min(1, floatBuffer[i]));
+                view.setInt16(i * 2, sample < 0 ? sample * 0x8000 : sample * 0x7fff, true);
+            }
+
+            return buffer;
+        }
+
+        async function startVoiceRecording() {
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+                sourceNode = audioContext.createMediaStreamSource(mediaStream);
+                processorNode = audioContext.createScriptProcessor(4096, 1, 1);
+
+                transcribeSocket = new WebSocket(buildTranscribeWsUrl());
+                transcribeSocket.binaryType = 'arraybuffer';
+                transcribeErrorShown = false;
+
+                transcribeSocket.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.error) {
+                            transcribeErrorShown = true;
+                            alert(data.error);
+                            stopVoiceRecording();
+                            return;
+                        }
+
+                        if (!data.text || data.is_partial) {
+                            return;
+                        }
+
+                        const trimmedText = data.text.trim();
+                        if (!trimmedText) {
+                            return;
+                        }
+
+                        lastInputWasVoice = true;
+                        messageInput.value = messageInput.value
+                            ? `${messageInput.value} ${trimmedText}`
+                            : trimmedText;
+                        messageInput.focus();
+                    } catch (parseError) {
+                        console.error('Transcribe message parse error:', parseError);
+                    }
+                };
+
+                transcribeSocket.onerror = () => {
+                    if (transcribeErrorShown) {
+                        return;
+                    }
+                    alert('Voice stream connection failed. Please check AWS credentials and transcribe setup.');
+                    stopVoiceRecording();
+                };
+
+                processorNode.onaudioprocess = (event) => {
+                    if (!isRecording || !transcribeSocket || transcribeSocket.readyState !== WebSocket.OPEN) {
+                        return;
+                    }
+                    const input = event.inputBuffer.getChannelData(0);
+                    transcribeSocket.send(floatTo16BitPCM(input));
+                };
+
+                sourceNode.connect(processorNode);
+                processorNode.connect(audioContext.destination);
+
+                isRecording = true;
+                voiceBtn.classList.add('recording');
+                voiceBtn.title = 'Stop voice input';
+            } catch (error) {
+                console.error('Voice recording start failed:', error);
+                alert('Unable to start microphone. Please allow mic permission and try again.');
+                stopVoiceRecording();
+            }
+        }
+
+        function stopVoiceRecording() {
+            isRecording = false;
+            voiceBtn.classList.remove('recording');
+            voiceBtn.title = 'Voice input';
+
+            if (processorNode) {
+                processorNode.disconnect();
+                processorNode.onaudioprocess = null;
+                processorNode = null;
+            }
+
+            if (sourceNode) {
+                sourceNode.disconnect();
+                sourceNode = null;
+            }
+
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+
+            if (mediaStream) {
+                mediaStream.getTracks().forEach((track) => track.stop());
+                mediaStream = null;
+            }
+
+            if (transcribeSocket && transcribeSocket.readyState <= WebSocket.OPEN) {
+                transcribeSocket.close();
+            }
+            transcribeSocket = null;
+        }
+
+        voiceBtn.addEventListener('click', async () => {
+            if (isRecording) {
+                stopVoiceRecording();
+                return;
+            }
+            await startVoiceRecording();
+        });
+
+        window.addEventListener('beforeunload', () => {
+            if (isRecording) {
+                stopVoiceRecording();
+            }
+        });
+
+        // Image upload (placeholder)
+        document.getElementById('imageBtn').addEventListener('click', () => {
+            document.getElementById('imageInput').click();
+        });
+
+        document.getElementById('imageInput').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                alert('Image upload feature coming soon! Will use AWS S3 and Rekognition.');
+            }
+        });
+    </script>
+</body>
+</html>

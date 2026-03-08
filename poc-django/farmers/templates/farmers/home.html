@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Krishi Mitra - Agricultural Advisory System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .feature-card {
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌾 AI Krishi Mitra</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/knowledge/">Knowledge Base</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/weather/">Weather</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/chat/">Chat</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout/">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="/register/">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-light text-success ms-2" href="/admin/">Admin</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">🌾 AI Krishi Mitra</h1>
+            <p class="lead mb-4">Your AI-Powered Agricultural Advisory System</p>
+            <p class="fs-5 mb-5">Get expert farming advice powered by AWS AI services</p>
+            {% if user.is_authenticated %}
+            <a href="/chat/" class="btn btn-light btn-lg me-3">Start Chatting</a>
+            <a href="/dashboard/" class="btn btn-outline-light btn-lg">Go to Dashboard</a>
+            {% else %}
+            <a href="/register/" class="btn btn-light btn-lg me-3">Register Now</a>
+            <a href="/login/" class="btn btn-outline-light btn-lg">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold mb-3">Features</h2>
+                <p class="text-muted">Powered by AWS Bedrock, Transcribe, Polly, and more</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">💬</div>
+                        <h5 class="card-title">AI Chat Assistant</h5>
+                        <p class="card-text">Get instant answers to your farming questions using AWS Bedrock AI</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">🎤</div>
+                        <h5 class="card-title">Voice Support</h5>
+                        <p class="card-text">Speak your questions and hear responses using AWS Transcribe & Polly</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">🌤️</div>
+                        <h5 class="card-title">Weather Updates</h5>
+                        <p class="card-text">Get hyperlocal weather forecasts and agricultural advisories</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">📸</div>
+                        <h5 class="card-title">Image Analysis</h5>
+                        <p class="card-text">Upload crop photos for disease and pest identification</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">📚</div>
+                        <h5 class="card-title">Knowledge Base</h5>
+                        <p class="card-text">Browse comprehensive agricultural information and best practices</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="fs-1 mb-3">🌍</div>
+                        <h5 class="card-title">Multi-Language</h5>
+                        <p class="card-text">Support for Hindi, English, Telugu, Tamil, and Marathi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3 class="fw-bold mb-3">Powered by AWS</h3>
+                    <p class="mb-3">Built on enterprise-grade AWS infrastructure:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✅ AWS Bedrock for AI reasoning</li>
+                        <li class="mb-2">✅ AWS Transcribe for voice-to-text</li>
+                        <li class="mb-2">✅ AWS Polly for text-to-speech</li>
+                        <li class="mb-2">✅ DynamoDB for farmer data</li>
+                        <li class="mb-2">✅ S3 for media storage</li>
+                        <li class="mb-2">✅ CloudFront for offline caching</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <h4 class="mb-4">Ready to Get Started?</h4>
+                        {% if user.is_authenticated %}
+                        <a href="/chat/" class="btn btn-success btn-lg">Start Chatting Now</a>
+                        {% else %}
+                        <a href="/register/" class="btn btn-success btn-lg me-2">Register</a>
+                        <a href="/login/" class="btn btn-outline-success btn-lg">Login</a>
+                        <p class="mt-3 text-muted">Or visit <a href="/admin/">Admin Panel</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2026 AI Krishi Mitra - Agricultural Advisory System</p>
+            <p class="mb-0 text-muted">POC - Django Web Interface with AWS Integration</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

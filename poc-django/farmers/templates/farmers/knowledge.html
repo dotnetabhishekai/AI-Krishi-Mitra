@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - AI Krishi Mitra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌾 AI Krishi Mitra</a>
+            <div class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="/dashboard/">Dashboard</a>
+                <a class="nav-link" href="/chat/">Chat</a>
+                {% endif %}
+                <a class="nav-link" href="/knowledge/">Knowledge</a>
+                <a class="nav-link" href="/weather/">Weather</a>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="/logout/">Logout</a>
+                {% else %}
+                <a class="nav-link" href="/login/">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="mb-4">📚 Agricultural Knowledge Base</h2>
+
+        <!-- Crops Section -->
+        <div class="mb-5">
+            <h3 class="mb-3">🌾 Crops</h3>
+            <div class="row g-4">
+                {% for crop_key, crop in crops.items %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ crop.name }}</h5>
+                            <p class="text-muted small">{{ crop.scientific_name|default:"" }}</p>
+                            <hr>
+                            <p><strong>Season:</strong> {{ crop.season }}</p>
+                            <p><strong>Water:</strong> {{ crop.water }}</p>
+                            <p><strong>Soil:</strong> {{ crop.soil }}</p>
+                            
+                            <p class="mb-1"><strong>Common Pests:</strong></p>
+                            <ul class="small">
+                                {% for pest in crop.pests %}
+                                <li>{{ pest }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <p class="mb-1"><strong>Diseases:</strong></p>
+                            <ul class="small">
+                                {% for disease in crop.diseases %}
+                                <li>{{ disease }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No crop information available.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Pests Section -->
+        <div class="mb-5">
+            <h3 class="mb-3">🐛 Pest Management</h3>
+            <div class="row g-4">
+                {% for pest_key, pest in pests.items %}
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pest.name|default:pest_key }}</h5>
+                            <p class="text-muted small">{{ pest.scientific_name|default:"" }}</p>
+                            <hr>
+                            <p><strong>Crop:</strong> {{ pest.crop }}</p>
+                            <p><strong>Identification:</strong> {{ pest.identification }}</p>
+                            <p><strong>Organic Control:</strong> {{ pest.organic }}</p>
+                            <p><strong>Prevention:</strong> {{ pest.prevention }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No pest information available.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Diseases Section -->
+        <div class="mb-5">
+            <h3 class="mb-3">🦠 Disease Management</h3>
+            <div class="row g-4">
+                {% for disease_key, disease in diseases.items %}
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ disease.name|default:disease_key }}</h5>
+                            <p class="text-muted small">{{ disease.scientific_name|default:"" }}</p>
+                            <hr>
+                            <p><strong>Crop:</strong> {{ disease.crop }}</p>
+                            <p><strong>Symptoms:</strong> {{ disease.symptoms }}</p>
+                            <p><strong>Management:</strong> {{ disease.management }}</p>
+                            <p><strong>Prevention:</strong> {{ disease.prevention }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No disease information available.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5 p-5 bg-light rounded">
+            <h4>Need Specific Advice?</h4>
+            <p class="text-muted">Chat with our AI assistant for personalized recommendations</p>
+            {% if user.is_authenticated %}
+            <a href="/chat/" class="btn btn-success btn-lg">Start Chatting</a>
+            {% else %}
+            <a href="/login/" class="btn btn-success btn-lg">Login to Chat</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
